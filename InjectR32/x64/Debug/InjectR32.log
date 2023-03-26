@@ -1,7 +1,0 @@
-﻿  Internal.cpp
-  Process.cpp
-C:\Users\black\OneDrive\Документы\InjectR32\InjectR32\Process.cpp(6,1): error C2011: Process: переопределение типа "class"
-C:\Users\black\OneDrive\Документы\InjectR32\InjectR32\Process.cpp(5,7): message : см. объявление "Process"
-  InjectR32.cpp
-  library.h
-  Создание кода...
