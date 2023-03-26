@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "Process.cpp"
 #include "Internal.cpp"
@@ -9,8 +9,7 @@ void Cleanup(const std::string message) {
    ExitProcess(0);
 }
 
-std::string RandomString(const size_t length)
-{
+std::string RandomString(const size_t length){
    std::string r;
    static const char bet[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYabcdefghijklmnopqrstuvwxyzZ1234567890" };
    srand((unsigned)time(NULL) * 5);
@@ -18,7 +17,6 @@ std::string RandomString(const size_t length)
       r += bet[rand() % (sizeof(bet) - 1)];
    return r;
 }
-
 
 int main()
 {
@@ -29,11 +27,9 @@ int main()
    
     DWORD ProcessId = process.GetId("csgo.exe");
 
-    while(!ProcessId)
-    {
+    while(!ProcessId){
        Cleanup("No ProcessId Found.");
     }
-
 
     HANDLE Game = process.Open();
     uintptr_t ModuleBase = process.GetModuleBase("client.dll");
@@ -43,28 +39,23 @@ int main()
     std::cout << "process.Open -> " << std::dec << Game << std::endl;
     std::cout << "ModuleBase -> " << std::dec << ModuleBase << std::endl;
 
-    if (internal.CheckFileExist("dhw.dll"))
-    {
+    if (internal.CheckFileExist("dhw.dll")){
 
-       if (!internal.ExecuteBypass(Game))
-       {
+       if (!internal.ExecuteBypass(Game)){
           Cleanup("Cannot Bypass...");
        }
 
-       if (process.LoadLibraryInject("dhw.dll")) 
-       {
+       if (process.LoadLibraryInject("dhw.dll")){
 
           internal.Backup(Game);
           std::cout << "Injected" << std::endl;
           system("pause");
           ExitProcess(0);
        }
-       else
-       {
+       else{
           internal.Backup(Game);
           Cleanup("Injection Failed.");
        }
-
     }
     return 0;
 }
