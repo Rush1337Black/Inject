@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InjectR32", "InjectR32\InjectR32.vcxproj", "{B36C9659-B6CF-4E6A-BCC3-F860A96D8887}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B36C9659-B6CF-4E6A-BCC3-F860A96D8887}.Debug|x64.ActiveCfg = Debug|x64
+		{B36C9659-B6CF-4E6A-BCC3-F860A96D8887}.Debug|x64.Build.0 = Debug|x64
+		{B36C9659-B6CF-4E6A-BCC3-F860A96D8887}.Debug|x86.ActiveCfg = Debug|Win32
+		{B36C9659-B6CF-4E6A-BCC3-F860A96D8887}.Debug|x86.Build.0 = Debug|Win32
+		{B36C9659-B6CF-4E6A-BCC3-F860A96D8887}.Release|x64.ActiveCfg = Release|x64
+		{B36C9659-B6CF-4E6A-BCC3-F860A96D8887}.Release|x64.Build.0 = Release|x64
+		{B36C9659-B6CF-4E6A-BCC3-F860A96D8887}.Release|x86.ActiveCfg = Release|Win32
+		{B36C9659-B6CF-4E6A-BCC3-F860A96D8887}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {872698CF-8FF9-40C1-A084-335B9D22EE4B}
+	EndGlobalSection
+EndGlobal
