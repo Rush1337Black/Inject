@@ -2,39 +2,44 @@
 
 #include "library.h"
 
-class Process
-{
+class Process{
+
    private:
 
 		PROCESSENTRY32 processentry;
 		DWORD ProcessId;
 
-		uintptr_t GetModuleBaseAddress(DWORD pid, const char* modName)
-		{
+		uintptr_t GetModuleBaseAddress(DWORD pid, const char* modName){
+
 			HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, pid);
 
-			if (hSnap != INVALID_HANDLE_VALUE) 
-			{
+			if (hSnap != INVALID_HANDLE_VALUE) {
+
 				MODULEENTRY32 modEntry;
 				modEntry.dwSize = sizeof(modEntry);
-				if (Module32First(hSnap, &modEntry)) 
-				{
-					do 
-					{
-						if (!strcmp(modEntry.szModule, modName)) 
-						{
+
+				if (Module32First(hSnap, &modEntry)) {
+
+					do {
+						if (!strcmp(modEntry.szModule, modName)) {
+
 							CloseHandle(hSnap);
 							return (uintptr_t)modEntry.modBaseAddr;
+
 						}
+
 					} while (Module32Next(hSnap, &modEntry));
+
 				}
+
 			}
 			return NULL;
 		}
+
 	public:
 
-      DWORD GetId(const char* ProcessName)
-		{
+      DWORD GetId(const char* ProcessName){
+
 			HANDLE Snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
 
 			processentry.dwSize = sizeof(processentry);
@@ -42,29 +47,30 @@ class Process
 			if (!Process32First(Snapshot, &processentry))
 				return NULL;
 
-			do 
-			{
-				if (!strcmp(processentry.szExeFile, ProcessName))
-				{
+			do {
+
+				if (!strcmp(processentry.szExeFile, ProcessName)){
+
 					CloseHandle(Snapshot);
 					return ProcessId = processentry.th32ProcessID;
+
 				}
+
 			} while (Process32Next(Snapshot, &processentry));
 
 			CloseHandle(Snapshot);
 			return NULL;
       }
 
-		HANDLE Open()
-		{
+		HANDLE Open(){
+
 			if (!ProcessId)
 				return NULL;
 
 			return OpenProcess(PROCESS_ALL_ACCESS, FALSE, ProcessId);
 		}
 
-		uintptr_t GetModuleBase(const char* client)
-		{
+		uintptr_t GetModuleBase(const char* client){
 
 			if (!ProcessId)
 				return NULL;
@@ -72,8 +78,8 @@ class Process
 			return GetModuleBaseAddress(ProcessId, client);
 		}
 
-		bool LoadLibraryInject(const char* Dll)
-		{
+		bool LoadLibraryInject(const char* Dll){
+
 			if (ProcessId == NULL)
 				return false;
 
